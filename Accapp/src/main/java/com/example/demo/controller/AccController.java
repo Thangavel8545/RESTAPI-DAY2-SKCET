@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -63,6 +64,51 @@ public class AccController {
 	{
 		sser.deleteid(custid);
 		return "deleted parameter id";
+	}
+	@GetMapping("showbyId/{id}")
+	public Optional<AccEntity> showid(@PathVariable int id)
+	{
+		return sser.showbyid(id);
+	}
+	
+	@PutMapping("updateinfo/{id}")
+	public String updateInfoById(@PathVariable int id,@RequestBody AccEntity ss)
+	{
+		return sser.updateinfoById(id, ss);
+	}
+	
+	@GetMapping("sort/{str}")
+	public List<AccEntity> sort(@PathVariable String str)
+	{
+		return sser.sort(str);
+	}
+	
+	@GetMapping("paging/{cur}/{tot}")
+	public List<AccEntity> paging(@PathVariable int cur,@PathVariable int tot)
+	{
+		return sser.paging(cur, tot);
+	}
+	
+	@GetMapping("pageandsort/{cur}/{tot}/{str}")
+	public List<AccEntity> pageandsort(@PathVariable int cur,@PathVariable int tot,@PathVariable String str)
+	{
+		return sser.pageandsort(cur, tot, str);
+	}
+	@DeleteMapping("deletequery/{billno}")
+	public String delbilldetails(@PathVariable int billno)
+	{
+		return sser.delbill(billno)+"deleted";
+	}
+	@GetMapping("showquery/{custid}")
+	public List<AccEntity> showbilldetails(@PathVariable int custid)
+	{
+		return sser.getbill(custid);
+	}
+	
+	@PutMapping("updatequery/{newbuyer}/{oldbuyer}")
+	public String updatebilldetails(@PathVariable String newbuyer,@PathVariable String oldbuyer)
+	{
+		return sser.updatebill(newbuyer, oldbuyer)+"updated";
 	}
 	
 }
