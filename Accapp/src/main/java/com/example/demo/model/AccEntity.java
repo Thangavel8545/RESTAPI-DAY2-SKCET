@@ -1,12 +1,14 @@
 package com.example.demo.model;
 
-import java.util.List;
+
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -15,7 +17,7 @@ import jakarta.persistence.Table;
 
 public class AccEntity{
 	@Id
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int custid;
 	  private int billno;
 	  private int amt;
@@ -27,13 +29,6 @@ public class AccEntity{
       @OneToOne(cascade = CascadeType.ALL)
       @JoinColumn(name="fk_shipid")
 	  private AuditEntity se;
-      
-
-	   
-      @OneToMany(cascade = CascadeType.ALL)
-      @JoinColumn(name="custid")
-      private List<CommodityEntity> ce;
-
 
 
 	public AccEntity() {
@@ -42,9 +37,7 @@ public class AccEntity{
 	}
 
 
-
-	public AccEntity(int custid, int billno, int amt, String buyer, String bank, String location, AuditEntity se,
-			List<CommodityEntity> ce) {
+	public AccEntity(int custid, int billno, int amt, String buyer, String bank, String location, AuditEntity se) {
 		super();
 		this.custid = custid;
 		this.billno = billno;
@@ -53,9 +46,7 @@ public class AccEntity{
 		this.bank = bank;
 		this.location = location;
 		this.se = se;
-		this.ce = ce;
 	}
-
 
 
 	public int getCustid() {
@@ -63,11 +54,9 @@ public class AccEntity{
 	}
 
 
-
 	public void setCustid(int custid) {
 		this.custid = custid;
 	}
-
 
 
 	public int getBillno() {
@@ -75,11 +64,9 @@ public class AccEntity{
 	}
 
 
-
 	public void setBillno(int billno) {
 		this.billno = billno;
 	}
-
 
 
 	public int getAmt() {
@@ -87,11 +74,9 @@ public class AccEntity{
 	}
 
 
-
 	public void setAmt(int amt) {
 		this.amt = amt;
 	}
-
 
 
 	public String getBuyer() {
@@ -99,11 +84,9 @@ public class AccEntity{
 	}
 
 
-
 	public void setBuyer(String buyer) {
 		this.buyer = buyer;
 	}
-
 
 
 	public String getBank() {
@@ -111,11 +94,9 @@ public class AccEntity{
 	}
 
 
-
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-
 
 
 	public String getLocation() {
@@ -123,11 +104,9 @@ public class AccEntity{
 	}
 
 
-
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
 
 
 	public AuditEntity getSe() {
@@ -135,23 +114,19 @@ public class AccEntity{
 	}
 
 
-
 	public void setSe(AuditEntity se) {
 		this.se = se;
 	}
+      
+
+	   
+     // @OneToMany(cascade = CascadeType.ALL)
+    //  @JoinColumn(name="custid")
+     // private List<CommodityEntity> ce;
 
 
 
-	public List<CommodityEntity> getCe() {
-		return ce;
-	}
 
-
-
-	public void setCe(List<CommodityEntity> ce) {
-		this.ce = ce;
-	}
-    
    
         
 

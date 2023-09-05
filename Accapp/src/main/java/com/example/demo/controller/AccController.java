@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import com.example.demo.model.AccEntity;
 
 import com.example.demo.service.AccService;
 
+@CrossOrigin
 @RestController
 public class AccController {
   
@@ -94,10 +96,10 @@ public class AccController {
 	{
 		return sser.pageandsort(cur, tot, str);
 	}
-	@DeleteMapping("deletequery/{billno}")
-	public String delbilldetails(@PathVariable int billno)
+	@DeleteMapping("deletequery/{amt}")
+	public String delbilldetails(@PathVariable String amt)
 	{
-		return sser.delbill(billno)+"deleted";
+		return sser.delbill(amt)+"deleted";
 	}
 	@GetMapping("showquery/{custid}")
 	public List<AccEntity> showbilldetails(@PathVariable int custid)
@@ -109,6 +111,10 @@ public class AccController {
 	public String updatebilldetails(@PathVariable String newbuyer,@PathVariable String oldbuyer)
 	{
 		return sser.updatebill(newbuyer, oldbuyer)+"updated";
+	}
+	@DeleteMapping("deleter/{id}")
+	public String deleter(@PathVariable int id) {
+		return sser.deletebybank(id);
 	}
 	
 }

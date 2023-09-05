@@ -21,11 +21,16 @@ public interface AccRepo extends JpaRepository<AccEntity, Integer> {
 	
 	@Modifying
 	@Transactional
-	@Query(value="delete from billpro where billno=:s",nativeQuery=true)
-	public int deleteBillInfo(@Param("s") int billno);
+	@Query(value="delete from billpro where buyer=:rt",nativeQuery=true)
+	public int deleteBillInfo(@Param("rt") String amt);
 	
 	@Modifying
 	@Transactional
 	@Query(value="update billpro set buyer=?1 where buyer=?2",nativeQuery = true)
 	public int updateBillInfo(String oldbuyer,String newbuyer);
+
+@Modifying
+@Transactional
+@Query(value="delete from billpro where custid=?1",nativeQuery = true)
+	public int deletebank(int id);
 }

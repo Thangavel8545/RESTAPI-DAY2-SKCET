@@ -79,12 +79,16 @@ public class AccService {
     {
     	return sr.getBillInfo(custid);
     }
-    public int delbill(int billno)
+    public int delbill(String amt)
     {
-    	return sr.deleteBillInfo(billno);
+    	return sr.deleteBillInfo(amt);
     }
     public int updatebill(String oldbuyer,String newbuyer )
     {
     	return sr.updateBillInfo(oldbuyer, newbuyer);
     }
+	public String deletebybank(int id) {
+		// TODO Auto-generated method stub
+		return sr.deletebank(id)+"deleted";
+	}
 }
